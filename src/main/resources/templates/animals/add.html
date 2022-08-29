@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title th:text="${title}"></title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
 <nav th:replace="fragments :: navLinks"></nav>
 <form method="post">
-    <input type="text" name="animalName">
-    <input type="submit" value="Add">
+    <div class="form-group">
+        <label>
+            Name <input type="text" name="animalName" class="form-control">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Add" class="btn btn-success">
+    </div>
 </form>
 </body>
 </html>
