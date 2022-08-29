@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="fragments :: tabTitle"></title>
+</head>
+<body>
+<nav th:replace="fragments :: navLinks"></nav>
+<p th:unless="${animals.size()}">Oops! No animals</p>
+<ul th:if="${animals.size()}">
+    <th:block th:each="animal : ${animals}">
+        <li th:text="${animal}"></li>
+    </th:block>
+</ul>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <script th:src="@{/script.js}"></script>
+
+    <title th:fragment="tabTitle">Animal Roster</title>
+</head>
+<body>
+<nav th:fragment="navLinks">
+    <h1>Animal Roster</h1>
+    <ul>
+        <li><a href="/animals">All Animals</a></li>
+        <li><a href="/animals/add">Add Animals</a></li>
+    </ul>
+</nav>
+</body>
+</html>
