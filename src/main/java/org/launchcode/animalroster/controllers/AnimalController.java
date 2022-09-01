@@ -1,29 +1,19 @@
 package org.launchcode.animalroster.controllers;
 
+import org.launchcode.animalroster.data.AnimalData;
+import org.launchcode.animalroster.models.Animal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("animals")
 public class AnimalController {
 
-    private static List<String> animals = new ArrayList<>();
-
     @GetMapping
     public String displayAllAnimals(Model model) {
-//        List<String> animals = new ArrayList<>();
-//        animals.add("Banana Cat");
-//        animals.add("Apple Dog");
-//        animals.add("Zebra that I always forget the fruit that matches with it");
-//        animals.add("Your teacher");
-        model.addAttribute("animals", animals);
+        model.addAttribute("title", "All Animals");
+        model.addAttribute("animals", AnimalData.getAll());
         return "animals/index";
     }
 
@@ -34,8 +24,26 @@ public class AnimalController {
     }
 
     @PostMapping("add")
-    public String processAddAnimalForm(@RequestParam String animalName) {
-        animals.add(animalName);
+    public String processAddAnimalForm(@ModelAttribute Animal newAnimal) {
+        AnimalData.add(newAnimal);
+        return "redirect:";
+    }
+
+    @GetMapping("remove")
+    public String displayRemoveAnimalForm(Model model) {
+        model.addAttribute("title", "Remove Animals");
+        model.addAttribute("animals", AnimalData.getAll());
+        return "animals/remove";
+    }
+
+    @PostMapping("remove")
+    public String processRemoveAnimalForm(@RequestParam(required = false) int[] animalIds) {
+        if (animalIds != null) {
+            for (int id : animalIds) {
+                AnimalData.remove(id);
+            }
+        }
+
         return "redirect:";
     }
 }

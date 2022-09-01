@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<header th:replace="fragments :: navLinks"></header>
+
+<form method="post">
+
+    <th:block th:each="animal : ${animals}">
+        <div class="form-group">
+            <label>
+                <span th:text="${animal.name}"></span>
+                <input type="checkbox" name="animalIds" th:value="${animal.id}" class="form-control">
+            </label>
+        </div>
+    </th:block>
+
+    <input type="submit" value="Remove Selected Animals" class="btn btn-danger">
+</form>
+
+</body>
+</html>
