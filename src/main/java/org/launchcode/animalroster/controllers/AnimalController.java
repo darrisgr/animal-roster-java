@@ -2,9 +2,13 @@ package org.launchcode.animalroster.controllers;
 
 import org.launchcode.animalroster.data.AnimalData;
 import org.launchcode.animalroster.models.Animal;
+import org.launchcode.animalroster.models.AnimalHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("animals")
@@ -19,12 +23,19 @@ public class AnimalController {
 
     @GetMapping("add")
     public String displayAddAnimalForm(Model model) {
-        model.addAttribute("title", "Create Animal");
+        model.addAttribute("title", "Add Animal");
+        model.addAttribute("animal", new Animal());
+        model.addAttribute("handlers", AnimalHandler.values());
         return "animals/add";
     }
 
     @PostMapping("add")
-    public String processAddAnimalForm(@ModelAttribute Animal newAnimal) {
+    public String processAddAnimalForm(@ModelAttribute @Valid Animal newAnimal,
+                                       Errors errors, Model model) {
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Animal");
+            return "animals/add";
+        }
         AnimalData.add(newAnimal);
         return "redirect:";
     }
