@@ -1,13 +1,18 @@
 package org.launchcode.animalroster.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Entity
 public class Animal {
 
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextId = 1;
 
     @NotNull(message="Name required!")
     @NotBlank(message="Do not leave blank!")
@@ -25,17 +30,13 @@ public class Animal {
     private AnimalHandler handler;
 
     public Animal(String name, String species, String description, AnimalHandler handler) {
-        this();
         this.name = name;
         this.species = species;
         this.description = description;
         this.handler = handler;
     }
 
-    public Animal() {
-        this.id = nextId;
-        nextId++;
-    }
+    public Animal() { }
 
     public String getName() {
         return name;
