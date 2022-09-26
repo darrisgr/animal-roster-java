@@ -9,7 +9,7 @@
 </head>
 <body class="container">
 <nav th:fragment="navLinks">
-    <h1>Animal Roster</h1>
+    <h1 th:text="${title}"></h1>
     <ul class="nav">
         <li class="nav-item"><a class="nav-link" href="/animals">All Animals</a></li>
         <li class="nav-item"><a class="nav-link" href="/animals/add">Add Animal</a></li>
