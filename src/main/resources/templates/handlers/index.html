@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<nav th:replace="fragments :: navLinks"></nav>
+<p th:unless="${handlers.size()}">Oops! No handlers</p>
+<table th:if="${handlers.size()}" class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tr th:each="handler : ${handlers}">
+        <td th:text="${handler.id}"></td>
+        <td th:text="${handler.name}"></td>
+    </tr>
+</table>
+</body>
+</html>

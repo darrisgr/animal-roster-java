@@ -8,11 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Animal {
-
-    @Id
-    @GeneratedValue
-    private int id;
+public class Animal extends AbstractEntity {
 
     @NotNull(message="Name required!")
     @NotBlank(message="Do not leave blank!")
@@ -68,10 +64,6 @@ public class Animal {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getId() {
-        return id;
     }
 
     @Override
