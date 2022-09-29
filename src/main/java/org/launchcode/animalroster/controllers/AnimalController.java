@@ -81,4 +81,20 @@ public class AnimalController {
 
         return "redirect:";
     }
+
+    @GetMapping("detail")
+    public String displayAnimalDetails(@RequestParam Integer animalId, Model model) {
+
+        Optional<Animal> result = animalRepository.findById(animalId);
+
+        if (result.isEmpty()) {
+            model.addAttribute("title", "Invalid Animal ID: " + animalId);
+        } else {
+            Animal animal = result.get();
+            model.addAttribute("title", animal.getName() + " Details");
+            model.addAttribute("animal", animal);
+        }
+
+        return "animals/detail";
+    }
 }

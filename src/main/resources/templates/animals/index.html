@@ -4,22 +4,14 @@
 <body class="container">
 <nav th:replace="fragments :: navLinks"></nav>
 <p th:unless="${animals.size()}">Oops! No animals</p>
-<table th:if="${animals.size()}" class="table table-striped">
+<table class="table table-striped">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Species</th>
-        <th>Description</th>
-        <th>Handler</th>
+        <th>Animal Name</th>
     </tr>
     </thead>
     <tr th:each="animal : ${animals}">
-        <td th:text="${animal.id}"></td>
-        <td th:text="${animal.name}"></td>
-        <td th:text="${animal.details.species}"></td>
-        <td th:text="${animal.details.description}"></td>
-        <td><a th:text="${animal.handler.name}" th:href="'/animals?handlerId=' + ${animal.handler.id}"</td>
+        <td><a th:href="'/animals/detail?animalId=' + ${animal.id}" th:text="${animal.name}"></a></td>
     </tr>
 </table>
 </body>

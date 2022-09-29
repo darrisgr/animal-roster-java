@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<nav th:replace="fragments :: navLinks"></nav>
+<table class="table table-striped">
+   <tr>
+      <th>ID</th>
+      <td th:text="${animal.id}"></td>
+   </tr>
+   <tr>
+      <th>Species</th>
+      <td th:text="${animal.details.species}"></td>
+   </tr>
+   <tr>
+      <th>Description</th>
+      <td th:text="${animal.details.description}"></td>
+   </tr>
+</table>
+</body>
+</html>
