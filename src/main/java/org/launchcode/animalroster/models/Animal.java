@@ -1,13 +1,10 @@
 package org.launchcode.animalroster.models;
 
-import org.launchcode.animalroster.data.HandlerRepository;
-
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Animal extends AbstractEntity {
@@ -17,23 +14,18 @@ public class Animal extends AbstractEntity {
     @Size(min = 3, max = 50)
     private String name;
 
-    @NotNull(message="Name required!")
-    @NotBlank(message="Do not leave blank!")
-    @Size(min = 3, max = 50)
-    private String species;
-
-    @Size(max = 250)
-    private String description;
+    @OneToOne(cascade = CascadeType.ALL)
+    @Valid
+    @NotNull
+    private AnimalDetails details;
 
     @ManyToOne
     @NotNull(message = "Give your animal a handler! :)")
     private Handler handler;
 
 
-    public Animal(String name, String species, String description, Handler handler) {
+    public Animal(String name, Handler handler) {
         this.name = name;
-        this.species = species;
-        this.description = description;
         this.handler = handler;
     }
 
@@ -55,20 +47,12 @@ public class Animal extends AbstractEntity {
         this.name = name;
     }
 
-    public String getSpecies() {
-        return species;
+    public AnimalDetails getDetails() {
+        return details;
     }
 
-    public void setSpecies(String species) {
-        this.species = species;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDetails(AnimalDetails details) {
+        this.details = details;
     }
 
     @Override
