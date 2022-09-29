@@ -29,10 +29,11 @@
         <label> Handler
             <select th:field="${animal.handler}">
                 <option th:each="handler : ${handlers}"
-                        th:value="${handler}"
-                        th:text="${handler.displayName}"
+                        th:value="${handler.id}"
+                        th:text="${handler.name}"
                 ></option>
             </select>
+            <p class="error" th:errors="${animal.handler}"></p>
         </label>
     </div>
 

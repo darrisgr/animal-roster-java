@@ -19,7 +19,7 @@
         <td th:text="${animal.name}"></td>
         <td th:text="${animal.species}"></td>
         <td th:text="${animal.description}"></td>
-        <td th:text="${animal.handler.displayName}"></td>
+        <td><a th:text="${animal.handler.name}" th:href="'/animals?handlerId=' + ${animal.handler.id}"</td>
     </tr>
 </table>
 </body>
