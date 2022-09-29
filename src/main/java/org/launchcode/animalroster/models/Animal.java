@@ -5,6 +5,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Animal extends AbstractEntity {
@@ -23,6 +25,8 @@ public class Animal extends AbstractEntity {
     @NotNull(message = "Give your animal a handler! :)")
     private Handler handler;
 
+    @ManyToMany
+    private final List<Tag> tags = new ArrayList<>();
 
     public Animal(String name, Handler handler) {
         this.name = name;
@@ -53,6 +57,14 @@ public class Animal extends AbstractEntity {
 
     public void setDetails(AnimalDetails details) {
         this.details = details;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void addTag(Tag tag) {
+        tags.add(tag);
     }
 
     @Override

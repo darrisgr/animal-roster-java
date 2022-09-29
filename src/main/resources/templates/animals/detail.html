@@ -16,6 +16,16 @@
       <th>Description</th>
       <td th:text="${animal.details.description}"></td>
    </tr>
+   <tr>
+      <th>Handler</th>
+      <td th:text="${animal.handler.name}"></td>
+   </tr>
+   <tr th:if="${tags.size()}">
+      <th>Tags</th>
+      <td><span th:each="tag : ${tags}"
+      th:text="'#' + ${tag.name} + ' '"></span></td>
+   </tr>
 </table>
+<a th:href="'/animals/add-tag?animalId=' + ${animal.id}" th:text="'Add Tag to ' + ${animal.name}"></a>
 </body>
 </html>
