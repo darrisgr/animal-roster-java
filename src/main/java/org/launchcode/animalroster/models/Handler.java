@@ -1,9 +1,6 @@
 package org.launchcode.animalroster.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,7 +16,8 @@ public class Handler extends AbstractEntity {
     @Size(min = 3, max = 50)
     private String name;
 
-    @OneToMany(mappedBy = "handler")
+    @OneToMany
+    @JoinColumn(name="handler_id")
     private final List<Animal> animals = new ArrayList<>();
 
     public Handler(String name) {
